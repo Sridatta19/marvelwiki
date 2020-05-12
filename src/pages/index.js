@@ -154,6 +154,7 @@ const IndexPage = ({ data: { allContentfulGroup } }) => {
                   <motion.div
                     key={member.id}
                     custom={i}
+                    layoutId={member.id}
                     initial={{ x: -200, opacity: 0 }}
                     onClick={() => setMember(member)}
                     animate={memberControls}

@@ -5,6 +5,9 @@ import { BLOCKS } from "@contentful/rich-text-types"
 import { motion, AnimatePresence } from "framer-motion"
 
 const Member = ({ member, closeDialog }) => {
+  if (member == null) {
+    return null
+  }
   return (
     <AnimatePresence>
       <div className="fixed bottom-0 inset-x-0 px-4 pb-6 sm:inset-0 sm:p-0 sm:flex sm:items-center sm:justify-center">
