@@ -36,7 +36,7 @@ const Comic = ({ comic, closeDialog }) => {
           </motion.div>
           <div className="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
             <div className="mb-2">
-              <p className="text-sm text-gray-600 flex items-center">
+              <p className="text-sm text-gray-600">
                 {`Published: ${comic.published}`}
               </p>
               <h1 className="text-gray-900 font-mont text-2xl mb-2 text-blue-1000">
@@ -51,7 +51,9 @@ const Comic = ({ comic, closeDialog }) => {
                     <h2 className="font-semibold pb-2">{children}</h2>
                   ),
                   [BLOCKS.PARAGRAPH]: (node, children) => (
-                    <p className="text-gray-700 text-base pb-2">{children}</p>
+                    <p className="text-gray-700 text-base pb-2 break-all">
+                      {children}
+                    </p>
                   ),
                 },
               })}

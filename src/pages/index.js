@@ -14,19 +14,11 @@ const IndexPage = ({ data: { allContentfulGroup } }) => {
   const [selectedMember, setMember] = useState(null)
   const controls = useAnimation()
   const memberControls = useAnimation()
-  const comicControls = useAnimation()
   const [once, setOnce] = useState(false)
   useScrollPosition(({ prevPos, currPos }) => {
     if (currPos.y < -5 && !once) {
       controls.start("half")
       setOnce(true)
-      setTimeout(() => {
-        comicControls.start(i => ({
-          opacity: 1,
-          x: 0,
-          transition: { type: "spring", delay: i * 0.2, duration: 2 },
-        }))
-      }, 5000)
     }
   }, [])
   useEffect(() => {
@@ -40,7 +32,7 @@ const IndexPage = ({ data: { allContentfulGroup } }) => {
     edges: [{ node }],
   } = allContentfulGroup
   const variants = {
-    half: { maxHeight: "240px", transition: { duration: 1 } },
+    half: { maxHeight: "300px", transition: { duration: 1 } },
     full: { maxHeight: "720px" },
   }
   const closeDialog = () => {
@@ -91,19 +83,19 @@ const IndexPage = ({ data: { allContentfulGroup } }) => {
               },
             })}
             <h2 className="text-3xl font-mont pb-4">Explore</h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
               {node.comics.map((comic, i) => {
                 return (
                   <motion.div
                     key={`${comic.id}-${i}`}
-                    custom={i}
                     onClick={() => setComic(comic)}
-                    initial={{ x: -200, opacity: 0 }}
-                    animate={comicControls}
                     layoutId={comic.id}
                     className="flex flex-col"
                   >
-                    <Img className="object-cover" fluid={comic.image.fluid} />
+                    <Img
+                      className="object-cover w-40 h-40"
+                      fluid={comic.image.fluid}
+                    />
                     <p className="text-xs text-gray-900 font-semibold text-sm">
                       {comic.title}
                     </p>
@@ -122,27 +114,27 @@ const IndexPage = ({ data: { allContentfulGroup } }) => {
             style={{ minHeight: "640px" }}
           >
             <h1 className="text-5xl font-mont">Avengers</h1>
-            <div>
+            <div className="mb-4">
               <p className="text-gray-900 font-mont text-sm">
                 Base of Operations
               </p>
               <span className="text-gray-700">{node.baseOfOperations}</span>
             </div>
-            <div>
+            <div className="mb-4">
               <p className="text-gray-900 font-mont text-sm">Slogan</p>
               <span className="text-gray-700">Avengers Assemble !!!</span>
             </div>
-            <div>
+            <div className="mb-4">
               <p className="text-gray-900 font-mont text-sm">
                 Place of formation
               </p>
               <span className="text-gray-700">Detroit, Michigan</span>
             </div>
-            <div>
+            <div className="mb-4">
               <p className="text-gray-900 font-mont text-sm">Creators</p>
               <span className="text-gray-700">Stan Lee, Jack Kirby</span>
             </div>
-            <div>
+            <div className="mb-4">
               <p className="text-gray-900 font-mont text-sm">
                 First Appearance
               </p>
@@ -150,7 +142,7 @@ const IndexPage = ({ data: { allContentfulGroup } }) => {
             </div>
             <div>
               <p className="text-gray-900 text-lg font-mont">Members</p>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
                 {node.members.map((member, i) => (
                   <motion.div
                     key={member.id}
@@ -226,7 +218,7 @@ export const query = graphql`
             }
             artists
             image {
-              fluid(maxWidth: 160) {
+              fluid(maxWidth: 800) {
                 ...GatsbyContentfulFluid_withWebp
               }
             }

@@ -23,7 +23,7 @@ const Layout = ({
   return (
     <>
       <AnimateSharedLayout type="crossfade">
-        <div className="px-4 md:px-20 lg:px-40 py-4 flex flex-col-reverse md:flex-row overflow-hidden">
+        <div className="px-4 lg:px-20 xl:px-32 py-4 flex flex-col-reverse md:flex-row overflow-hidden">
           {children}
           {selectedComic !== null && (
             <Comic closeDialog={closeDialog} comic={selectedComic} />
