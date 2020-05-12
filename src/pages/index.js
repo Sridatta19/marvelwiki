@@ -53,8 +53,9 @@ const IndexPage = ({ data: { allContentfulGroup } }) => {
           style={{ perspective: "1200px" }}
         >
           <motion.div
-            animate={{ rotateY: 0 }}
+            animate={{ rotateY: 0, opacity: 1 }}
             style={{ originX: 0, originY: 0.5 }}
+            initial={{ opacity: 0 }}
             transition={{
               from: 90,
               duration: 2,
@@ -148,7 +149,6 @@ const IndexPage = ({ data: { allContentfulGroup } }) => {
                     key={member.id}
                     custom={i}
                     layoutId={member.id}
-                    style={{ opacity: 0 }}
                     initial={{ x: -200, opacity: 0 }}
                     onClick={() => setMember(member)}
                     animate={memberControls}
