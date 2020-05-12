@@ -210,7 +210,7 @@ export const query = graphql`
             }
             avatar {
               fluid(maxWidth: 800) {
-                ...GatsbyContentfulFluid_tracedSVG
+                ...GatsbyContentfulFluid_withWebp
               }
             }
           }
@@ -227,7 +227,7 @@ export const query = graphql`
             artists
             image {
               fluid(maxWidth: 160) {
-                ...GatsbyContentfulFluid_tracedSVG
+                ...GatsbyContentfulFluid_withWebp
               }
             }
           }
